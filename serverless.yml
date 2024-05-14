@@ -1,0 +1,18 @@
+org: iainhoolahan
+app: pfglambdas
+service: pfg-lambda
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: iain_pfg
+  region: eu-west-2
+
+functions:
+  function1:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /test
+          method: get
