@@ -1,72 +1,44 @@
-<!--
-title: 'AWS NodeJS Example'
-description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-priority: 1
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# Serverless Email Backend with AWS Lambda and SendGrid
 
+This repository contains a serverless backend deployed to AWS Lambda, designed to handle email sending through SendGrid.
 
-# Serverless Framework AWS NodeJS Example
+## Overview
 
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
+This backend function receives HTTP requests containing contact form data (name, email, message) and sends an email to a specified recipient using SendGrid. The function includes CORS handling to allow requests from specified origins.
 
-## Usage
+## Prerequisites
 
-### Deployment
+- AWS Account
+- SendGrid Account and API Key
+- Node.js
 
-In order to deploy the example, you need to run the following command:
+## Setup
 
-```
-$ serverless deploy
-```
+1. **Clone the repository:**
 
-After running deploy, you should see output similar to:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-```bash
-Deploying aws-node-project to stage dev (us-east-1)
+2. **Install dependencies:**
 
-✔ Service deployed to stack aws-node-project-dev (112s)
+   ```bash
+   npm install
+   ```
 
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
-```
+3. **Set up environment variables:**
 
-### Invocation
+   - `SENDGRID_API_KEY`: Your SendGrid API key.
+   - `EMAIL_TO`: The email address to which the messages will be sent.
 
-After successful deployment, you can invoke the deployed function by using the following command:
+   These variables can be set in the AWS Lambda console or through your deployment pipeline.
 
-```bash
-serverless invoke --function hello
-```
+## Function Explanation
 
-Which should result in response similar to the following:
+- **Email Sending:** Uses the SendGrid API to send emails based on data received in the request.
+- **Error Handling:** Provides meaningful error messages and logs errors for debugging.
 
-```json
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
-}
-```
+## Deployment
 
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
+Deploy the Lambda function using the AWS Lambda console, AWS CLI, or a deployment framework such as the Serverless Framework.
