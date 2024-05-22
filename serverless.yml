@@ -11,6 +11,7 @@ provider:
   environment:
     SENDGRID_API_KEY: ${env:SENDGRID_API_KEY}
     EMAIL_TO: ${env:SENDGRID_VERIFIED_EMAIL}
+    MAPBOX_API_KEY: ${env:MAPBOX_API_KEY}
 
 functions:
   function1:
@@ -19,11 +20,30 @@ functions:
       - httpApi:
           path: /test
           method: get
+
   sendEmail:
     handler: lib/sendEmail.handler
     events:
       - http:
           path: send-email
+          method: post
+          cors:
+            origins:
+              - 'http://www.pfgeomatics.com'
+              - 'http://localhost:3000'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: true
+
+  fetchCoordinates:
+    handler: lib/fetchCoordinates.handler
+    events:
+      - http:
+          path: fetch-coordinates
           method: post
           cors:
             origins:
