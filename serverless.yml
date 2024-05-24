@@ -29,7 +29,7 @@ functions:
           method: post
           cors:
             origins:
-              - 'http://www.pfgeomatics.com'
+              - 'https://www.pfgeomatics.com'
               - 'http://localhost:3000'
             headers:
               - Content-Type
@@ -47,7 +47,7 @@ functions:
           method: post
           cors:
             origins:
-              - 'http://www.pfgeomatics.com'
+              - 'https://www.pfgeomatics.com'
               - 'http://localhost:3000'
             headers:
               - Content-Type
