@@ -10,7 +10,8 @@ provider:
   region: eu-west-2
   environment:
     SENDGRID_API_KEY: ${env:SENDGRID_API_KEY}
-    EMAIL_TO: ${env:SENDGRID_VERIFIED_EMAIL}
+    EMAIL_TO_1: ${env:SENDGRID_VERIFIED_EMAIL}
+    EMAIL_TO_2: ${env:SENDGRID_VERIFIED_EMAIL2}
     MAPBOX_API_KEY: ${env:MAPBOX_API_KEY}
 
 functions:
